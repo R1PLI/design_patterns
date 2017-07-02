@@ -1,0 +1,1 @@
+Design patterns self-educational practice

@@ -24,7 +24,7 @@ public class BaseTests {
     @Test
     public void validateDogsBehaviour() {
         kirk.setName("Kirk");
-        assertThat(kirk.tryToFly()).isEqualTo("Can't flI");
+        assertThat(kirk.tryToFly()).isEqualTo("Can't fly");
         assertThat(kirk.getName()).isEqualTo("Kirk");
         assertThat(kirk.getSound()).isEqualTo("Bark");
 

@@ -1,4 +1,4 @@
-group 'design-patters'
+group 'java-stuff'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -10,6 +10,8 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile 'org.assertj:assertj-core:3.8.0'
+    testCompile(
+        ['junit:junit:4.12'],
+        ['org.assertj:assertj-core:3.8.0']
+    )
 }

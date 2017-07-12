@@ -16,6 +16,7 @@ script:
 
 notifications:
  email:
+   on_failure: always
    recipients:
       - treadz11@gmail.com
    on_failure: always

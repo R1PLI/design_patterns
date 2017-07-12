@@ -5,6 +5,12 @@ language: java
 jdk:
   - oraclejdk8
 
+before_install:
+ - chmod +x gradlew
+
+install: true
+script: "./gradlew build -x copyDistFiles"
+
 script:
   - ./gradlew clean build test
 

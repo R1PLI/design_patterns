@@ -12,6 +12,11 @@ repositories {
 dependencies {
     testCompile(
         ['junit:junit:4.12'],
-        ['org.assertj:assertj-core:3.8.0']
+        ['org.assertj:assertj-core:3.8.0'],
+        ['io.rest-assured:json-schema-validator:3.0.3'],
+        ['io.rest-assured:spring-mock-mvc:3.0.3']
+    )
+    compile(
+        ['io.rest-assured:json-path:3.0.3']
     )
 }

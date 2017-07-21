@@ -11,7 +11,15 @@ repositories {
 
 dependencies {
     testCompile(
-        ['junit:junit:4.12'],
-        ['org.assertj:assertj-core:3.8.0']
+            ['junit:junit:4.12'],
+            ['org.assertj:assertj-core:3.8.0'],
+            [group: 'com.h2database', name: 'h2', version: '1.4.193']
+    )
+    compile(
+            [group: 'org.mybatis', name: 'mybatis', version: '3.4.1'],
+            [group: 'com.h2database', name: 'h2', version: '1.4.193']
+    )
+    compileOnly(
+            ["org.projectlombok:lombok:1.16.16"]
     )
 }

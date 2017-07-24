@@ -19,7 +19,7 @@ public class CodingPractice {
         .sum();
   }
 
-  public Set<Integer> removeDuplicatesValuesInListMuliplyByTwo(final List<Integer> numbers) {
+  public Set<Integer> removeDuplicatesValuesInListMultiplyByTwo(final List<Integer> numbers) {
     return numbers.stream()
         .map(number -> number * 2)
         .collect(toSet());

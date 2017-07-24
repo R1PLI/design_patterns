@@ -49,7 +49,7 @@ public class UnitTests {
   public void checkIfNotDuplicates() {
     numbers = asList(1, 2, 3, 4, 5, 1, 2, 3, 4, 5);
 
-    assertThat(codingPractice.removeDuplicatesValuesInListMuliplyByTwo(numbers)).containsOnly(2, 4, 6, 8, 10);
+    assertThat(codingPractice.removeDuplicatesValuesInListMultiplyByTwo(numbers)).containsOnly(2, 4, 6, 8, 10);
   }
 
   // strategy pattern tests

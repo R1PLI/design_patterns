@@ -5,6 +5,7 @@ import java8.classes.Camera;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -39,7 +40,7 @@ public class CodingPractice {
 
   //decorator
   public void printSnap(Camera camera) {
-    System.out.println(camera.snap(new Color(125,125,125)));
+    System.out.println(camera.snap(new Color(125, 125, 125)));
   }
 
   public Double imperativeStyleOfFindFirstDoubleValue(Double[] array) {
@@ -61,4 +62,11 @@ public class CodingPractice {
         .findFirst()
         .orElse(null);
   }
+
+  public Optional<String> returnOptionalValue(final List<String> list) {
+    return list.stream()
+        .filter(value -> value.startsWith("e"))
+        .findFirst();
+  }
+
 }

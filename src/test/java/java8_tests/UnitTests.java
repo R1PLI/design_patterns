@@ -18,6 +18,7 @@ public class UnitTests {
 
   private CodingPractice codingPractice;
   private List<Integer> numbers;
+  private List<String> strings;
 
   @Before
   public void setUp() {
@@ -128,5 +129,12 @@ public class UnitTests {
   public void compareToMethods() {
     Double[] doubles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     assertThat(codingPractice.imperativeStyleOfFindFirstDoubleValue(doubles)).isEqualTo(codingPractice.functionStyleOfFindFirstDouble(doubles));
+  }
+
+  @Test
+  public void testForOptionalValue() {
+    strings = asList("dimon", "overwatch");
+
+    System.out.println(codingPractice.returnOptionalValue(strings).map(s -> "Hey, " + s + " davai").orElse("No such values here!"));
   }
 }

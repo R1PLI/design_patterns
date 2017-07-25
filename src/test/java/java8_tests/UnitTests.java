@@ -1,8 +1,8 @@
 package java8_tests;
 
-import java8.classes.Camera;
 import java8.CodingPractice;
 import java8.NumericHelper;
+import java8.classes.Camera;
 import java8.classes.Mailer;
 import java8.classes.Resource;
 import org.junit.Before;
@@ -122,5 +122,11 @@ public class UnitTests {
             .op2()
     );
     System.out.println("=============================\n");
+  }
+
+  @Test
+  public void compareToMethods() {
+    Double[] doubles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+    assertThat(codingPractice.imperativeStyleOfFindFirstDoubleValue(doubles)).isEqualTo(codingPractice.functionStyleOfFindFirstDouble(doubles));
   }
 }

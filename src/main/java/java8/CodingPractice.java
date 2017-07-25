@@ -3,6 +3,7 @@ package java8;
 import java8.classes.Camera;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
@@ -39,5 +40,25 @@ public class CodingPractice {
   //decorator
   public void printSnap(Camera camera) {
     System.out.println(camera.snap(new Color(125,125,125)));
+  }
+
+  public Double imperativeStyleOfFindFirstDoubleValue(Double[] array) {
+    Double result = 0.0;
+
+    for (Double e : array) {
+      if (e > 2.0) {
+        result = e;
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  public Double functionStyleOfFindFirstDouble(final Double[] array) {
+    return Arrays.stream(array)
+        .filter(number -> number > 2)
+        .findFirst()
+        .orElse(null);
   }
 }

@@ -9,11 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toSet;
 import static java8.CollectionHelper.convertListToMap;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,13 +21,10 @@ public class UnitTests {
   private CodingPractice codingPractice;
   private List<Integer> numbers;
   private List<String> strings;
-  private Map<Integer, String> maps;
-
 
   @Before
   public void setUp() {
     codingPractice = new CodingPractice();
-    maps = new HashMap<>();
   }
 
   @Test
@@ -145,10 +141,13 @@ public class UnitTests {
   }
 
   @Test
+  @SuppressWarnings("unchecked")
   public void mapTests() {
-    strings = asList("dimap", "overwatch");
 
-    System.out.println(convertListToMap(strings));
-    System.out.println(codingPractice.returnListFormMapForOperations(convertListToMap(strings)));
+    strings = asList("dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch");
+
+    System.out.println(convertListToMap(strings).values());
+
+    assertThat(convertListToMap(strings).values().stream().collect(toSet())).isEqualToComparingOnlyGivenFields(asList("dimap", "overwatch"));
   }
 }

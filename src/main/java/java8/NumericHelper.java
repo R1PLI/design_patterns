@@ -1,6 +1,7 @@
 package java8;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class NumericHelper {
   public static boolean isEven(int number) {
@@ -17,6 +18,10 @@ public class NumericHelper {
 
   public static int getRandomNumber() {
     Random random = new Random();
-    return 1 + random.nextInt(50);
+    return 1 + random.nextInt(100);
+  }
+
+  public static UUID getRandomUUID() {
+    return UUID.randomUUID();
   }
 }

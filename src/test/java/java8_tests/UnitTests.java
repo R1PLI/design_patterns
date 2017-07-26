@@ -2,6 +2,7 @@ package java8_tests;
 
 import java8.CodingPractice;
 import java8.NumericHelper;
+import java8.calculator.Calculator;
 import java8.classes.Camera;
 import java8.classes.Mailer;
 import java8.classes.Resource;
@@ -141,13 +142,21 @@ public class UnitTests {
   }
 
   @Test
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings( {"unchecked", "SimplifyStreamApiCallChains"})
   public void mapTests() {
 
-    strings = asList("dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch","dimap", "overwatch");
+    strings = asList("dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch");
 
     System.out.println(convertListToMap(strings).values());
 
     assertThat(convertListToMap(strings).values().stream().collect(toSet())).isEqualToComparingOnlyGivenFields(asList("dimap", "overwatch"));
+  }
+
+  @Test
+  public void calculatorTest() {
+    System.out.println(Calculator.ADD.getResult(5, 6));
+    System.out.println(Calculator.SUB.getResult(5, 6));
+    System.out.println(Calculator.MUL.getResult(5, 6));
+    System.out.println(Calculator.DIV.getResult(5, 0));
   }
 }

@@ -9,9 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static java8.CollectionHelper.convertListToMap;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UnitTests {
@@ -19,10 +22,13 @@ public class UnitTests {
   private CodingPractice codingPractice;
   private List<Integer> numbers;
   private List<String> strings;
+  private Map<Integer, String> maps;
+
 
   @Before
   public void setUp() {
     codingPractice = new CodingPractice();
+    maps = new HashMap<>();
   }
 
   @Test
@@ -136,5 +142,13 @@ public class UnitTests {
     strings = asList("dimon", "overwatch");
 
     System.out.println(codingPractice.returnOptionalValue(strings).map(s -> "Hey, " + s + " davai").orElse("No such values here!"));
+  }
+
+  @Test
+  public void mapTests() {
+    strings = asList("dimap", "overwatch");
+
+    System.out.println(convertListToMap(strings));
+    System.out.println(codingPractice.returnListFormMapForOperations(convertListToMap(strings)));
   }
 }

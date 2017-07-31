@@ -10,7 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.*;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toSet;
@@ -158,5 +160,46 @@ public class UnitTests {
     System.out.println(Calculator.SUB.getResult(5, 6));
     System.out.println(Calculator.MUL.getResult(5, 6));
     System.out.println(Calculator.DIV.getResult(5, 0));
+  }
+
+  @Test
+  public void functionTests() {
+    BinaryOperator<Integer> adder = (n1, n2) -> n1 + n2;
+    System.out.println(adder.apply(4, 3));
+
+    BinaryOperator<Integer> bi = BinaryOperator.maxBy(Comparator.naturalOrder());
+    System.out.println(bi.apply(4, 3));
+
+    Consumer<String> consumer = System.out::println;
+    consumer.accept("Hello from Consumer!");
+
+    BiConsumer<String, String> biConsumer = (x, y) -> {
+      System.out.print(x);
+      System.out.println(y);
+    };
+    biConsumer.accept("Hello from ", "BiConsumer!");
+
+    BiFunction<String, String, String> biFunction = String::concat;
+    System.out.println(biFunction.apply("Hello, ", "World!"));
+  }
+
+  @Test
+  public void transformFunctionTest() {
+    Double[] doubles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+    System.out.println("String list with sqrt numbers " + NumericHelper.transformNumbers(asList(doubles), Math::sqrt));
+    System.out.println("String list with exp numbers " + NumericHelper.transformNumbers(asList(doubles), Math::exp));
+  }
+
+  @Test
+  public void biPredicateTest() {
+    BiPredicate<Integer, Integer> bi = (x, y) -> Double.valueOf(x) > Double.valueOf(y);
+    BiPredicate<Integer, Integer> biPredicate = (x, y) -> x > y;
+    BiPredicate<Integer, Integer> biPredicateMinus2 = (x, y) -> x - 2 > y;
+
+    assertThat(bi.test(3,4)).isFalse();
+    assertThat(bi.negate().test(3,4)).isTrue();
+    assertThat(biPredicate.and(biPredicateMinus2).test(8, 3)).isTrue();
+    assertThat(biPredicate.or(biPredicateMinus2).test(8, 3)).isTrue();
+    assertThat(NumericHelper.customCompareFunction((value1, value2) -> value1 / 2 == value2, 8, 4)).isTrue();
   }
 }

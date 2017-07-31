@@ -74,5 +74,4 @@ public class CodingPractice {
          .filter(value -> value.contains("map"))
          .collect(toList());
   }
-
 }

@@ -70,8 +70,10 @@ public class UnitTests {
   @Test
   public void highOrderFunctionWithEvenNumbersTest() {
     numbers = asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    final Predicate<Integer> isEven = number -> (number % 2 == 0);
 
     assertThat(codingPractice.totalValues(numbers, NumericHelper::isEven)).isEqualTo(30);
+    assertThat(codingPractice.totalValues(numbers, isEven)).isEqualTo(30);
   }
 
   @Test
@@ -150,6 +152,7 @@ public class UnitTests {
     strings = asList("dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch", "dimap", "overwatch");
 
     System.out.println(convertListToMap(strings).values());
+
 
     assertThat(convertListToMap(strings).values().stream().collect(toSet())).isEqualToComparingOnlyGivenFields(asList("dimap", "overwatch"));
   }

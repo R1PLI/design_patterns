@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.function.*;
 
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
 import static java8.CollectionHelper.convertListToMap;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -204,5 +205,15 @@ public class UnitTests {
     assertThat(biPredicate.and(biPredicateMinus2).test(8, 3)).isTrue();
     assertThat(biPredicate.or(biPredicateMinus2).test(8, 3)).isTrue();
     assertThat(NumericHelper.customCompareFunction((value1, value2) -> value1 / 2 == value2, 8, 4)).isTrue();
+  }
+
+  @Test
+  public void stringJoiner() {
+    strings = asList("dimon", "overwatch");
+
+    assertThat(strings.stream()
+        .map(String::toUpperCase)
+        .collect(joining(", "))
+    ).isEqualTo("DIMON, OVERWATCH");
   }
 }

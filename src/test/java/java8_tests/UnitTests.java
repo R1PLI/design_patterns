@@ -1,6 +1,7 @@
 package java8_tests;
 
 import java8.CodingPractice;
+import java8.CollectionHelper;
 import java8.NumericHelper;
 import java8.calculator.Calculator;
 import java8.classes.Camera;
@@ -27,6 +28,8 @@ public class UnitTests {
 
   private CodingPractice codingPractice;
   private VenkatsPractice venkatsPractice;
+  private NumericHelper numericHelper;
+  private CollectionHelper collectionHelper;
   private List<Integer> numbers;
   private List<String> strings;
   private List<BigDecimal> prices;
@@ -35,6 +38,8 @@ public class UnitTests {
   public void setUp() {
     codingPractice = new CodingPractice();
     venkatsPractice = new VenkatsPractice();
+    numericHelper = new NumericHelper();
+    collectionHelper = new CollectionHelper();
   }
 
   @Test

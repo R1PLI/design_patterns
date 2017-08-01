@@ -12,7 +12,10 @@ install: true
 script: "./gradlew build -x copyDistFiles"
 
 script:
-  - ./gradlew clean build test
+  - ./gradlew clean build jacocoTestReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
  email:

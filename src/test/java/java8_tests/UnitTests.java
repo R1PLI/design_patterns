@@ -32,7 +32,7 @@ public class UnitTests {
   private NumericHelper numericHelper;
   private CollectionHelper collectionHelper;
   private List<Integer> numbers;
-  List<Double> doubleValues;
+  private List<Double> doubleValues;
   private List<String> strings;
   private List<BigDecimal> prices;
 
@@ -149,7 +149,14 @@ public class UnitTests {
   @Test
   public void compareToMethods() {
     Double[] doubles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+
     assertThat(codingPractice.imperativeStyleOfFindFirstDoubleValue(doubles)).isEqualTo(codingPractice.functionStyleOfFindFirstDouble(doubles));
+  }
+
+  @Test
+  public void checkForEmptyList() {
+    Double[] doubles1 = {};
+    assertThat(codingPractice.imperativeStyleOfFindFirstDoubleValue(doubles1)).isEqualTo(0.0);
   }
 
   @Test
@@ -268,4 +275,5 @@ public class UnitTests {
       assertThat(e).isNotInstanceOf(NullPointerException.class);
     }
   }
+
 }

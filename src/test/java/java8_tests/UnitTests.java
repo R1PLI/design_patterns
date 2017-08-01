@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.*;
 
 import static java.util.Arrays.asList;
@@ -31,6 +32,7 @@ public class UnitTests {
   private NumericHelper numericHelper;
   private CollectionHelper collectionHelper;
   private List<Integer> numbers;
+  private List<Double> doubleValues;
   private List<String> strings;
   private List<BigDecimal> prices;
 
@@ -147,7 +149,14 @@ public class UnitTests {
   @Test
   public void compareToMethods() {
     Double[] doubles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+
     assertThat(codingPractice.imperativeStyleOfFindFirstDoubleValue(doubles)).isEqualTo(codingPractice.functionStyleOfFindFirstDouble(doubles));
+  }
+
+  @Test
+  public void checkForEmptyList() {
+    Double[] doubles1 = {};
+    assertThat(codingPractice.imperativeStyleOfFindFirstDoubleValue(doubles1)).isEqualTo(0.0);
   }
 
   @Test
@@ -239,4 +248,32 @@ public class UnitTests {
 
     assertThat(venkatsPractice.imperativeStyleDiscount(prices)).isEqualTo(venkatsPractice.functionalStyleDiscount(prices));
   }
+
+  @Test
+  public void mapWithNullElementsTest() {
+    doubleValues = asList(1.0, 2.0, null, 4.0, 5.0, 6.0, null, 8.0, 9.0, 10.0);
+
+    try {
+      System.out.println(doubleValues.stream()
+          .map(Double::intValue)
+          .reduce(0, Integer::sum));
+    } catch (Exception e) {
+      assertThat(e).isInstanceOf(NullPointerException.class);
+    }
+  }
+
+  @Test
+  public void shouldNotReturnNullPointerTest() {
+    doubleValues = asList(1.0, 2.0, null, 4.0, 5.0, 6.0, null, 8.0, 9.0, 10.0);
+
+    try {
+      System.out.println(doubleValues.stream()
+          .filter(Objects::nonNull)
+          .map(Double::intValue)
+          .reduce(0,Integer::sum));
+    } catch (Exception e) {
+      assertThat(e).isNotInstanceOf(NullPointerException.class);
+    }
+  }
+
 }

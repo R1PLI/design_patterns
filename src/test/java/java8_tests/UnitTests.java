@@ -6,10 +6,13 @@ import java8.calculator.Calculator;
 import java8.classes.Camera;
 import java8.classes.Mailer;
 import java8.classes.Resource;
+import java8.venkat.VenkatsPractice;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.*;
@@ -23,12 +26,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UnitTests {
 
   private CodingPractice codingPractice;
+  private VenkatsPractice venkatsPractice;
   private List<Integer> numbers;
   private List<String> strings;
+  private List<BigDecimal> prices;
 
   @Before
   public void setUp() {
     codingPractice = new CodingPractice();
+    venkatsPractice = new VenkatsPractice();
   }
 
   @Test
@@ -164,6 +170,7 @@ public class UnitTests {
     System.out.println(Calculator.SUB.getResult(5, 6));
     System.out.println(Calculator.MUL.getResult(5, 6));
     System.out.println(Calculator.DIV.getResult(5, 0));
+    assertThat(Calculator.ADD.getSymbol()).isEqualTo("+");
   }
 
   @Test
@@ -200,8 +207,8 @@ public class UnitTests {
     BiPredicate<Integer, Integer> biPredicate = (x, y) -> x > y;
     BiPredicate<Integer, Integer> biPredicateMinus2 = (x, y) -> x - 2 > y;
 
-    assertThat(bi.test(3,4)).isFalse();
-    assertThat(bi.negate().test(3,4)).isTrue();
+    assertThat(bi.test(3, 4)).isFalse();
+    assertThat(bi.negate().test(3, 4)).isTrue();
     assertThat(biPredicate.and(biPredicateMinus2).test(8, 3)).isTrue();
     assertThat(biPredicate.or(biPredicateMinus2).test(8, 3)).isTrue();
     assertThat(NumericHelper.customCompareFunction((value1, value2) -> value1 / 2 == value2, 8, 4)).isTrue();
@@ -215,5 +222,16 @@ public class UnitTests {
         .map(String::toUpperCase)
         .collect(joining(", "))
     ).isEqualTo("DIMON, OVERWATCH");
+  }
+
+  @Test
+  public void venkatTests() {
+    prices = Arrays.asList(
+        new BigDecimal("10"), new BigDecimal("30"), new BigDecimal("17"),
+        new BigDecimal("20"), new BigDecimal("15"), new BigDecimal("18"),
+        new BigDecimal("45"), new BigDecimal("12")
+    );
+
+    assertThat(venkatsPractice.imperativeStyleDiscount(prices)).isEqualTo(venkatsPractice.functionalStyleDiscount(prices));
   }
 }

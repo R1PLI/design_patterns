@@ -1,7 +1,6 @@
 package java8;
 
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
@@ -18,11 +17,6 @@ public class NumericHelper {
 
   public static boolean isOdd(int number) {
     return number % 2 != 0;
-  }
-
-  public static int getRandomNumber() {
-    Random random = new Random();
-    return 1 + random.nextInt(100);
   }
 
   public static UUID getRandomUUID() {

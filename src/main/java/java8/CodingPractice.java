@@ -3,12 +3,12 @@ package java8;
 import java8.classes.Camera;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 public class CodingPractice {
@@ -31,10 +31,6 @@ public class CodingPractice {
     return values.stream()
         .filter(selector)
         .reduce(0, Integer::sum);
-  }
-
-  public void doWork(int value, Function<Integer, Integer> func) {
-    System.out.println(func.apply(value));
   }
 
   //decorator
@@ -66,12 +62,5 @@ public class CodingPractice {
     return list.stream()
         .filter(value -> value.startsWith("e"))
         .findFirst();
-  }
-
-  public List<String> returnListFormMapForOperations(Map<String, String> map) {
-     return map.values()
-         .stream()
-         .filter(value -> value.contains("map"))
-         .collect(toList());
   }
 }

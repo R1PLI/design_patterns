@@ -5,7 +5,7 @@ import strategy.interfaces.ItFlys;
 public class Bird extends Animal {
 
     public void beRude() {
-        System.out.println("You are fat, boy!");
+        System.out.print("You are fat, boy!");
     }
 
     public Bird() {

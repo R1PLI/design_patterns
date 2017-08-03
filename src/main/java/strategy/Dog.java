@@ -4,7 +4,7 @@ import strategy.interfaces.CantFly;
 
 public class Dog extends Animal{
     public void digHole() {
-        System.out.println("Dug a hole");
+        System.out.print("Dug a hole");
     }
 
     public Dog() {

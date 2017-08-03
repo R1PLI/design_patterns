@@ -18,9 +18,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
+import java.util.stream.IntStream;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static java8.CollectionHelper.convertListToMap;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -270,10 +272,27 @@ public class UnitTests {
       System.out.println(doubleValues.stream()
           .filter(Objects::nonNull)
           .map(Double::intValue)
-          .reduce(0,Integer::sum));
+          .reduce(0, Integer::sum));
     } catch (Exception e) {
       assertThat(e).isNotInstanceOf(NullPointerException.class);
     }
   }
 
+  //boxed transforms IntStream to Stream<Integer>
+
+  @Test
+  public void closedRangeStreamTest() {
+    assertThat(IntStream.rangeClosed(1, 4)
+        .boxed()
+        .collect(toList())
+    ).isEqualTo(asList(1, 2, 3, 4));
+  }
+
+  @Test
+  public void rangeStreamTest() {
+    assertThat(IntStream.range(1, 4)
+        .boxed()
+        .collect(toList())
+    ).isEqualTo(asList(1, 2, 3));
+  }
 }

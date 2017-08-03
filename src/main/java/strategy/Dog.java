@@ -2,16 +2,16 @@ package strategy;
 
 import strategy.interfaces.CantFly;
 
-public class Dog extends Animal{
-    public void digHole() {
-        System.out.println("Dug a hole");
-    }
+public class Dog extends Animal {
+	public void digHole() {
+		System.out.print("Dug a hole");
+	}
 
-    public Dog() {
-        super();
+	public Dog() {
+		super();
 
-         setSound("Bark");
+		setSound("Bark");
 
-        flyingType = new CantFly();
-    }
+		flyingType = new CantFly();
+	}
 }

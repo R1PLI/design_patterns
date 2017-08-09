@@ -293,4 +293,32 @@ public class UnitTests {
 			.collect(toList())
 		).isEqualTo(asList(1, 2, 3));
 	}
+
+	@Test
+	public void unaryOperatorTest() {
+		Function<Integer, Integer> func = e -> e * 2;
+		UnaryOperator<Integer> i = Objects::hash;
+		assertThat(func.andThen(i).apply(15)).isEqualTo(61);
+	}
+
+	@Test
+	// Integer and Double has separate way to make hashCode:
+	// for int - just returning a value
+	// for double - magic with doubleToLongBits
+	// for long - magic with ^ and >>> operators, but could be equal to int hashCode
+	public void hashSetTests() {
+		Integer integerValue = 15;
+		Double doubleValue = 15.0;
+		Long longValue = 15L;
+		assertThat(integerValue.hashCode()).isNotEqualTo(doubleValue.hashCode());
+		assertThat(integerValue.hashCode()).isEqualTo(longValue.hashCode());
+	}
+
+	@Test
+	// string has own unique way to make hash:
+	// s.charAt(0) * 31^n-1 + s.charAt(1) * 31^n-2 + ... + s.charAt(n-1)
+	public void stringHashCode() {
+		String stringValue = "2009";
+		assertThat(stringValue.hashCode()).isEqualTo(1537223);
+	}
 }

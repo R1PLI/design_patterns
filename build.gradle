@@ -14,11 +14,38 @@ buildscript {
 
 apply plugin: "com.github.opengl-BOBO.assertjGen"
 apply plugin: 'java'
+apply plugin: "jacoco"
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+jacoco {
+    toolVersion = '0.7.6.201602180812'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+task codeCoverageReport(type: JacocoReport, dependsOn: ['test']) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    projects.each {
+        sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
+        html.enabled false
+        csv.enabled false
+    }
 }
 
 dependencies {

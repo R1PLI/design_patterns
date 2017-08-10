@@ -4,15 +4,15 @@ import strategy.interfaces.ItFlys;
 
 public class Bird extends Animal {
 
-    public void beRude() {
-        System.out.println("You are fat, boy!");
-    }
+	public void beRude() {
+		System.out.print("You are fat, boy!");
+	}
 
-    public Bird() {
-        super();
+	public Bird() {
+		super();
 
-        setSound("Bloop");
+		setSound("Bloop");
 
-        flyingType = new ItFlys();
-    }
+		flyingType = new ItFlys();
+	}
 }

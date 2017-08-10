@@ -4,6 +4,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static bean.ErrorAssert.assertThat;
@@ -16,6 +17,7 @@ public class BaseTests {
 
 	private static RequestSpecification spec;
 
+	@Ignore
 	@BeforeClass
 	public static void initSpec() {
 		spec = new RequestSpecBuilder()
@@ -24,6 +26,7 @@ public class BaseTests {
 			.build();
 	}
 
+	@Ignore
 	@Test
 	public void baseGetTest() {
 		get("https://syst2.project4.com/api/rest/v1/catalog/products/115010)")
@@ -31,6 +34,7 @@ public class BaseTests {
 			.body("response[0].status", equalTo("40490006"));
 	}
 
+	@Ignore
 	@Test
 	public void baseGetWithGivenTest() {
 		given().spec(spec)
@@ -41,6 +45,7 @@ public class BaseTests {
 			.body("skus[0].availability.stockLevel", equalTo(1384));
 	}
 
+	@Ignore
 	@Test
 	public void fluentGetWithAssertjTest() {
 		assertThat(

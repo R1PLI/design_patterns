@@ -1,18 +1,6 @@
 group 'java-stuff'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "gradle.plugin.com.github.opengl-8080:assertjGen-gradle-plugin:1.1.4"
-    }
-}
-
-apply plugin: "com.github.opengl-BOBO.assertjGen"
 apply plugin: 'java'
 apply plugin: "jacoco"
 
@@ -50,23 +38,8 @@ task codeCoverageReport(type: JacocoReport, dependsOn: ['test']) {
 
 dependencies {
     testCompile(
-            ['io.rest-assured:rest-assured:3.0.3'],
-            ['io.rest-assured:json-path:3.0.3'],
-            ['io.rest-assured:json-schema-validator:3.0.3'],
             ['junit:junit:4.12'],
             ['org.assertj:assertj-core:3.8.0'],
-            ['org.assertj:assertj-assertions-generator-maven-plugin:2.0.0']
-    )
-    compile(
-            ['io.rest-assured:rest-assured:3.0.3'],
-            [group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-core', version: '0.4.37'],
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1']
     )
     compileOnly 'org.projectlombok:lombok:1.16.18'
-}
-
-assertjGen {
-    classOrPackageNames = ['bean']
-    outputDir = 'src/test/java'
-    cleanOnlyFiles = true
 }

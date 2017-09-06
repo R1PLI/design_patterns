@@ -308,8 +308,8 @@ public class UnitTests {
 	// for long - magic with ^ and >>> operators, but could be equal to int hashCode
 	public void hashSetTests() {
 		Integer integerValue = 15;
-		Double doubleValue = 15.0;
-		Long longValue = 15L;
+		Double doubleValue = Double.valueOf(integerValue);
+		Long longValue = Long.valueOf(integerValue);
 		assertThat(integerValue.hashCode()).isNotEqualTo(doubleValue.hashCode());
 		assertThat(integerValue.hashCode()).isEqualTo(longValue.hashCode());
 	}

@@ -38,7 +38,12 @@ task codeCoverageReport(type: JacocoReport, dependsOn: ['test']) {
 
 dependencies {
     testCompile(
-        ['junit:junit:4.12'],
-        ['org.assertj:assertj-core:3.8.0']
+            ['junit:junit:4.12'],
+            ['org.assertj:assertj-core:3.8.0'],
+            ['com.google.truth:truth:0.35']
     )
+    compileOnly(
+            ['org.projectlombok:lombok:1.16.16'],
+    )
+
 }

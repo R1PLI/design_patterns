@@ -46,5 +46,6 @@ dependencies {
             ['org.projectlombok:lombok:1.16.16'],
     )
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0")
+    compile('org.apache.httpcomponents:httpcore:4.4.4')
 
 }

@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.String.valueOf;
@@ -122,5 +123,22 @@ public class Main {
 	//Greatest common divisor
 	private static int gcd(int a, int b) {
 		return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue();
+	}
+
+	public int differenceBetweenSumOfSqAndSqOfSum() {
+		return Math.abs(sumOfSquares() - squareOfSums());
+	}
+
+	private static int sumOfSquares() {
+		return IntStream.rangeClosed(0, 100).boxed()
+			.map(item -> item * item)
+			.reduce(0, Integer::sum);
+	}
+
+	private static int squareOfSums() {
+		int SumOfElement = IntStream.rangeClosed(0, 100).boxed()
+			.reduce(0, Integer::sum);
+
+		return SumOfElement * SumOfElement;
 	}
 }

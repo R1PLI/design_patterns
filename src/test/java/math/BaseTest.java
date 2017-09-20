@@ -85,4 +85,10 @@ public class BaseTest {
 		int[] numbers = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 		System.out.println(main.lcm(numbers));
 	}
+
+	@Test
+	@DisplayName("Should return value of difference between square of sums and sum of squares on 100 elemtns")
+	void differenceInSumOfSquareAndSquareOfSumTest() {
+		assertThat(main.differenceBetweenSumOfSqAndSqOfSum()).isEqualTo(25164150);
+	}
 }

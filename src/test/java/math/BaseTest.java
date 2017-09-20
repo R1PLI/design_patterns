@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseTest {
@@ -48,15 +50,15 @@ public class BaseTest {
 	}
 
 	@Test
-	@DisplayName("Should return 839 for 0 as number")
+	@DisplayName("Statistic should have count 0 for if 0 passed as parameter")
 	void biggestFactorForPrimeNumberTest() {
-		assertThat(main.biggestFactorForPrimeNumber(0).getMax()).isEqualTo(839);
+		assertThat(main.biggestFactorForPrimeNumber(BigInteger.ZERO).getCount()).isEqualTo(0);
 	}
 
 	@Test
 	@DisplayName("Should return max factor for prime number")
 	void biggestFactoryForPrimeNumberValidTest() {
-		assertThat(main.biggestFactorForPrimeNumber(716151937).getMax()).isEqualTo(6857);
+		assertThat(main.biggestFactorForPrimeNumber(new BigInteger("600851475143")).getMax()).isEqualTo(6857);
 	}
 
 	@Test

@@ -13,19 +13,18 @@ import static java.util.stream.IntStream.range;
 import static java.util.stream.IntStream.rangeClosed;
 
 public class Main {
-	public IntSummaryStatistics biggestFactorForPrimeNumber(int primeNumber) {
-		int n = primeNumber;
+	public LongSummaryStatistics biggestFactorForPrimeNumber(BigInteger primeNumber) {
+		long n = primeNumber.longValue();
 
-		List<Integer> factors = new ArrayList<>();
-		for (int i = 2; i <= n; i++) {
+		List<Long> factors = new ArrayList<>();
+		for (long i = 2; i <= n; i++) {
 			while (n % i == 0) {
 				factors.add(i);
 				n /= i;
 			}
 		}
 
-		factors.add(839);
-		return factors.stream().collect(IntSummaryStatistics::new, IntSummaryStatistics::accept, IntSummaryStatistics::combine);
+		return factors.stream().collect(LongSummaryStatistics::new, LongSummaryStatistics::accept, LongSummaryStatistics::combine);
 	}
 
 	public long getSumForEvenFibonacciNumber(long n) {

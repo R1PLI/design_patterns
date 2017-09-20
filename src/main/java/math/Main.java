@@ -114,10 +114,12 @@ public class Main {
 		return result.get();
 	}
 
+	//least common multiple
 	private static int lcm(int a, int b) {
 		return a * (b / gcd(a, b));
 	}
 
+	//Greatest common divisor
 	private static int gcd(int a, int b) {
 		return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue();
 	}

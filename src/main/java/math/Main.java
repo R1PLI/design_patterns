@@ -2,6 +2,7 @@ package math;
 
 import org.apache.http.message.BasicNameValuePair;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
@@ -101,5 +102,22 @@ public class Main {
 
 		return range(0, s.length())
 			.noneMatch(i -> s.charAt(i) != rs.charAt(i));
+	}
+
+	public long lcm(long[] input) {
+		long result = input[0];
+		for (int i = 1; i < input.length; i++) {
+			result = lcm(result, input[i]);
+		}
+
+		return result;
+	}
+
+	private static long lcm(long a, long b) {
+		return a * (b / gcd(a, b));
+	}
+
+	private static long gcd(long a, long b) {
+		return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).longValue();
 	}
 }

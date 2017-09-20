@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import static java.lang.String.valueOf;
 import static java.util.stream.IntStream.range;
+import static java.util.stream.IntStream.rangeClosed;
 
 public class Main {
 	public IntSummaryStatistics biggestFactorForPrimeNumber(int primeNumber) {
@@ -104,20 +105,21 @@ public class Main {
 			.noneMatch(i -> s.charAt(i) != rs.charAt(i));
 	}
 
-	public long lcm(long[] input) {
-		long result = input[0];
-		for (int i = 1; i < input.length; i++) {
-			result = lcm(result, input[i]);
-		}
+	public int lcm(int[] input) {
+		AtomicInteger result = new AtomicInteger(input[0]);
 
-		return result;
+		rangeClosed(1, input.length)
+			.map(item -> lcm(result.get(), item))
+			.forEach(result::set);
+
+		return result.get();
 	}
 
-	private static long lcm(long a, long b) {
+	private static int lcm(int a, int b) {
 		return a * (b / gcd(a, b));
 	}
 
-	private static long gcd(long a, long b) {
-		return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).longValue();
+	private static int gcd(int a, int b) {
+		return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue();
 	}
 }

@@ -3,24 +3,15 @@ package math;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
-public class Main {
-	public static void main(String... args) {
-		System.out.println(getSumOfSpecificNumbers());
-		System.out.println("-----------------------");
-		System.out.println(fibonacci(4000000));
-		System.out.println("-----------------------");
-		System.out.println(biggestFactorForPrimeNumber(716151937).getMax());
-		System.out.println("-----------------------");
-		System.out.println(workingWithParisAndMaps());
-		System.out.println("-----------------------");
-		System.out.println(findLargestPalindrome());
-		System.out.println("-----------------------");
-	}
+import static java.lang.String.valueOf;
+import static java.util.stream.IntStream.range;
 
-	public static IntSummaryStatistics biggestFactorForPrimeNumber(int primeNumber) {
+public class Main {
+	public IntSummaryStatistics biggestFactorForPrimeNumber(int primeNumber) {
 		int n = primeNumber;
 
 		List<Integer> factors = new ArrayList<>();
@@ -35,7 +26,7 @@ public class Main {
 		return factors.stream().collect(IntSummaryStatistics::new, IntSummaryStatistics::accept, IntSummaryStatistics::combine);
 	}
 
-	public static long fibonacci(long n) {
+	public long getSumForEvenFibonacciNumber(long n) {
 
 
 		long[] fib = {2, 0};
@@ -51,7 +42,7 @@ public class Main {
 		return summed;
 	}
 
-	public static int getSumOfSpecificNumbers() {
+	public int getSumOfSpecificNumbers() {
 		BiFunction<Integer, Integer, Boolean> isDividedByNumber = (item, number) -> item % number == 0;
 
 		return Stream.iterate(0, i -> i + 1)
@@ -60,7 +51,7 @@ public class Main {
 			.reduce(0, Integer::sum);
 	}
 
-	public static String workingWithParisAndMaps() {
+	public String workingWithParisAndMaps() {
 		HashMap<String, BasicNameValuePair> lul = new HashMap<>();
 
 		lul.put("admin", new BasicNameValuePair("hello", "world"));
@@ -73,13 +64,26 @@ public class Main {
 			.getValue();
 	}
 
-	public static int findLargestPalindrome() {
+	public int findLargestPalindrome(final int rangeStart, final int rangeEnd) {
+		AtomicInteger result = new AtomicInteger(0);
+
+		range(rangeStart, rangeEnd).forEach(i ->
+			range(rangeStart, rangeEnd)
+				.map(j -> i * j)
+				.filter(Main::isPalindrome)
+				.filter(palindrome -> palindrome > result.get())
+				.forEach(result::set)
+		);
+
+		return result.get();
+	}
+
+	public int findLargestPalindromeImperative(int rangeStart, int rangeEnd) {
 		int maxPalindrome = 0;
 		int result;
 
-
-		for (int i = 100; i <= 999; i++) {
-			for (int j = 100; j <= 999; j++) {
+		for (int i = rangeStart; i < rangeEnd; i++) {
+			for (int j = rangeStart; j < rangeEnd; j++) {
 				result = i * j;
 				if (isPalindrome(result) && result > maxPalindrome) {
 					maxPalindrome = result;
@@ -90,18 +94,12 @@ public class Main {
 		return maxPalindrome;
 	}
 
-	public static boolean isPalindrome(int n) {
+	private static boolean isPalindrome(int n) {
 
-		String s = String.valueOf(n);
+		String s = valueOf(n);
 		String rs = new StringBuffer(s).reverse().toString();
 
-		for (int i = 0; i < s.length(); i++) {
-			if (s.charAt(i) != rs.charAt(i)) {
-				return false;
-			}
-		}
-
-		return true;
+		return range(0, s.length())
+			.noneMatch(i -> s.charAt(i) != rs.charAt(i));
 	}
-
 }

@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 import static java.lang.String.valueOf;
@@ -146,7 +147,7 @@ public class Main {
 		int c = 1; //the counter for prime numbers have found so far
 
 		while (true) {
-			if (isPrime(i)) {
+			if (precisionIsPrime(i)) {
 				c++;
 			}
 			//if c == 10001 we have found the 10001:st prime number
@@ -157,12 +158,20 @@ public class Main {
 		}
 	}
 
-	public static boolean isPrime(int number) {
+	public static boolean isPrime(long number) {
 		return rangeClosed(2, getEndNumber(number)).noneMatch(i -> number % i == 0);
 	}
 
-	private static int getEndNumber(int i) {
+	public static boolean precisionIsPrime(long number) {
+		return rangeClosed(2, getEndNumberPrecision(number)).noneMatch(i -> number % i == 0);
+	}
+
+	private static int getEndNumberPrecision(long i) {
 		return (int) Math.ceil(Math.sqrt(i));
+	}
+
+	private static int getEndNumber(long i) {
+		return (int) (Math.sqrt(i));
 	}
 
 	//The idea is to find sum of elements that evenly divisible by input number
@@ -196,5 +205,11 @@ public class Main {
 
 	private int productWithCoefficient(int coefficient, int... params) {
 		return (int) Math.pow(coefficient, 3) * params[0] * params[1] * params[2];
+	}
+
+	public long findPrimeSumBelowTwoMillions(int i) {
+		return LongStream.rangeClosed(2, i)
+			.filter(Main::isPrime)
+			.sum();
 	}
 }

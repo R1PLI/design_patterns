@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseTest {
 
+	private static final int TWO_MILLION = 2000000;
 	private Main main = new Main();
 
 	@Test
@@ -76,13 +77,13 @@ public class BaseTest {
 	@Test
 	@DisplayName("Get sum of even fibonacci number that are not bigger than 4mil")
 	void methodForFindSumOfFibonacciNumberTest() {
-		assertThat(main.getSumForEvenFibonacciNumber(4000000)).isEqualTo(4613732);
+		assertThat(main.getSumForEvenFibonacciNumber(TWO_MILLION * 2)).isEqualTo(4613732);
 	}
 
 	@Test
 	@DisplayName("Find the least common multiply")
 	void lcmTest() {
-		int[] numbers = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+		int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 		System.out.println(main.lcm(numbers));
 	}
 
@@ -102,5 +103,13 @@ public class BaseTest {
 	@DisplayName("should find special Pythagorean  triplet")
 	void findPythagoreanTriplet() {
 		assertThat(main.productOfAbc(1000)).isEqualTo(31875000);
+	}
+
+	@Test
+	@DisplayName("should return sum of primes below 2 million - 142913828922")
+	void findSumOfPrimes() {
+		BigInteger expectedValue = new BigInteger("142913828922");
+
+		assertThat(main.findPrimeSumBelowTwoMillions(TWO_MILLION)).isEqualTo(expectedValue.longValue());
 	}
 }

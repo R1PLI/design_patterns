@@ -140,4 +140,28 @@ public class Main {
 
 		return SumOfElement * SumOfElement;
 	}
+
+	public int findPrime(int soughtPosition) {
+		int i = 2; //the number to check if prime
+		int c = 1; //the counter for prime numbers have found so far
+
+		while (true) {
+			if (isPrime(i)) {
+				c++;
+			}
+			//if c == 10001 we have found the 10001:st prime number
+			if (c == soughtPosition) {
+				return i;
+			}
+			i++;
+		}
+	}
+
+	public static boolean isPrime(int number) {
+		return rangeClosed(2, getEndNumber(number)).noneMatch(i -> number % i == 0);
+	}
+
+	private static int getEndNumber(int i) {
+		return (int) Math.ceil(Math.sqrt(i));
+	}
 }

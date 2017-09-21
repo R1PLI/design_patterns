@@ -91,4 +91,10 @@ public class BaseTest {
 	void differenceInSumOfSquareAndSquareOfSumTest() {
 		assertThat(main.differenceBetweenSumOfSqAndSqOfSum()).isEqualTo(25164150);
 	}
+
+	@Test
+	@DisplayName("Should return prime on 10001 position")
+	void getMaxPrimeNumber() {
+		assertThat(main.findPrime(10001)).isEqualTo(104743);
+	}
 }

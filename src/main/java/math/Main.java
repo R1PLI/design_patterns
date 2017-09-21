@@ -164,4 +164,37 @@ public class Main {
 	private static int getEndNumber(int i) {
 		return (int) Math.ceil(Math.sqrt(i));
 	}
+
+	//The idea is to find sum of elements that evenly divisible by input number
+	//Then should find the division coefficient
+	//And last one - multiply each number by this coefficient to receive sought product
+	public int productOfAbc(final int s) {
+		int a;
+		int b;
+		int c;
+		int k;
+		int sum;
+
+		for (int m = 2; m <= 500; m++) {
+			for (int n = 1; n < m; n++) {
+				a = m * m - n * n;
+				b = 2 * m * n;
+				c = m * m + n * n;
+				sum = a + b + c;
+				if (isEvenlyDivisible(s, sum)) {
+					k = s / sum;
+					return productWithCoefficient(k, a, b, c);
+				}
+			}
+		}
+		return -1;
+	}
+
+	private boolean isEvenlyDivisible(int divisible, int divisor) {
+		return divisible % divisor == 0;
+	}
+
+	private int productWithCoefficient(int coefficient, int... params) {
+		return (int) Math.pow(coefficient, 3) * params[0] * params[1] * params[2];
+	}
 }

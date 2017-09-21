@@ -97,4 +97,10 @@ public class BaseTest {
 	void getMaxPrimeNumber() {
 		assertThat(main.findPrime(10001)).isEqualTo(104743);
 	}
+
+	@Test
+	@DisplayName("should find special Pythagorean  triplet")
+	void findPythagoreanTriplet() {
+		assertThat(main.productOfAbc(1000)).isEqualTo(31875000);
+	}
 }

@@ -1,9 +1,12 @@
 package pract;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
-import static java.util.Comparator.*;
+import static java.util.Comparator.naturalOrder;
 
 public class Main {
 	public static void main(String[] args) {
